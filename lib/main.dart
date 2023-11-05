@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskati/core/colors.dart';
 import 'package:taskati/core/styles.dart';
-import 'package:taskati/features/upload/upload_name_photo.dart';
+import 'package:taskati/features/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15))),
           fontFamily: GoogleFonts.poppins().fontFamily),
       debugShowCheckedModeBanner: false,
-      home: const UploadView(),
+      home: const HomeView(),
     );
   }
 }
