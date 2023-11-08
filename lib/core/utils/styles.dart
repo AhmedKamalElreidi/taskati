@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskati/core/colors.dart';
+import 'package:taskati/core/utils/colors.dart';
 
 TextStyle getHeadlineStyle({double fontSize = 18}) {
   return TextStyle(

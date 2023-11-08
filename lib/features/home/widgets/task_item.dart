@@ -1,9 +1,31 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:taskati/core/colors.dart';
-import 'package:taskati/core/styles.dart';
+import 'package:taskati/core/model/task_model.dart';
+import 'package:taskati/core/utils/colors.dart';
+import 'package:taskati/core/utils/styles.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
+  const TaskItem({
+    Key? key,
+    required this.task,
+  }) : super(key: key);
+
+  final Task task;
+
+  Color getColor(int index) {
+    switch (index) {
+      case 0:
+        return AppColors.primaryColor;
+      case 1:
+        return AppColors.orangeColor;
+      case 2:
+        return AppColors.redColor;
+      case 3:
+        return Colors.green;
+      default:
+        return AppColors.primaryColor;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +33,14 @@ class TaskItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 3),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: AppColors.primaryColor),
+          borderRadius: BorderRadius.circular(15), color: getColor(task.color)),
       child: Row(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Task - 1',
+                task.title,
                 style: getTitleStyle(color: Colors.white, fontSize: 16),
               ),
               const SizedBox(height: 10),
@@ -31,13 +52,13 @@ class TaskItem extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '12:00 AM: 12:30 AM',
+                  '${task.startTime}: ${task.endTime}',
                   style: getSmallTextStyle(color: AppColors.lightBg),
                 )
               ]),
               const SizedBox(height: 10),
               Text(
-                'note ',
+                task.note,
                 style: getSubTitleStyle(color: Colors.white),
               ),
             ],
@@ -51,7 +72,7 @@ class TaskItem extends StatelessWidget {
           RotatedBox(
             quarterTurns: 3,
             child: Text(
-              'TODO',
+              task.isComplete ? 'COMPLETED' : 'TODO',
               style: getSubTitleStyle(color: AppColors.lightBg),
             ),
           )
